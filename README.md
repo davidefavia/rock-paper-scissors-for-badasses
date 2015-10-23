@@ -29,13 +29,13 @@ $ bower install
 
 ## Develop while playing
 
-Run task
+Run task:
 
 ```bash
 $ gulp serve
 ```
 
-This task creates a folder named 'build' inside the project, it is removed and created everytime you run `serve`. If you open your browser at
+This task creates a folder named 'build' inside the project, it is removed and created everytime you run `serve`. If you open your browser at:
 
 [http://localhost:12345](http://localhost:12345)
 
@@ -53,27 +53,29 @@ Main application file is located at `src/js/app.js`. It describes the **AngularJ
 
 ## Build
 
-To build project, run task
+To build project, run task:
 
 ```bash
 $ gulp build
 ```
 
-This task is the same as `serve` BUT it does not start the webserve and it does not watch `src` files for changes.
+This task works like `serve` BUT it does not start the webserver and it does not watch `src` files for changes.
 
 You can publish `build` folder content wherever you want!
 
 ## Test
 
-To run test, run script
+To run test, run script:
 
 ```bash
 $ npm run test
 ```
 
-Unit testing environment is **Karma runner**, while the unit testing framework is **Jasmine**. Tests run inside **Chrome browser**.
+Unit testing is done with **Karma runner** environment and **Jasmine** as framework. Tests run inside **Chrome browser**.
 
 ## Todo
 
 - Better responsive layout.
-- Javascript minification for production.
+- Use only needed Bootstrap modules (buttons, grid system).
+- Javascript concatenation and minification for production.
+- Remove useless files for production environment (_e.g._ LESS files).
