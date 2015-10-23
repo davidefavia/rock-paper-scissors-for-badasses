@@ -1,0 +1,34 @@
+<div id="play">
+  <div class="row">
+    <div class="col-md-5">
+      <badass user="userChoice" status="userStatus"></badass>
+      <h3>{{userChoice.label}}</h3>
+      <h6>You</h6>
+      <div>
+        <a class="btn btn-lg weapon" ng-repeat="w in weapons" ng-class="{'selected':(userWeapon===w)}" ng-click="setUserWeapon(w);" ng-hide="(userWeapon!=w && userWeapon)"><i ng-class="'fa fa-hand-'+w+'-o'"></i></a>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <!-- countdown -->
+      <h2 class="countdown animated" ng-repeat="i in countdown" ng-if="actualCount==i" ng-class="{'zoomIn fadeOut':(actualCount==i),'fadeOut':countdownEnd}" ng-hide="playAgain">{{i}}</h2>
+      <h4 class="result animated" ng-show="playAgain" ng-class="{fadeInDown:playAgain}">
+        <span ng-show="userStatus=='winner'">You win!</span>
+        <span ng-show="computerStatus=='winner'">Computer wins!</span>
+        <span ng-show="userStatus==='tie' && computerStatus==='tie'">Tie!</span>
+      </h4>
+      <a href="" class="btn btn-danger btn animated" ng-click="reset();" ng-show="playAgain" ng-class="{fadeInDown:playAgain}">Play again!</a>
+    </div>
+    <div class="col-md-5">
+      <badass user="computerChoice" status="computerStatus"></badass>
+      <h3>{{computerChoice.label}}</h3>
+      <h6>Computer</h6>
+      <div>
+        <a class="btn weapon" ng-hide="computerWeapon">&nbsp;</a>
+        <a class="btn weapon" ng-show="computerWeapon && computerWeapon===w" ng-repeat="w in weapons" ng-class="{'selected':(computerWeapon===w)}"><i ng-class="'fa fa-hand-'+w+'-o'"></i></a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <a href="#/home" class="btn btn-link btn-xs">Change badasses</a>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "name": "rock-paper-scissors",
+  "version": "0.1.0",
+  "authors": [
+    "Davide Favia <davide.favia@gmail.com>"
+  ],
+  "description": "Rock, paper, scissors hand game!",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://davidefavia.com/rock-paper-scissors/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.7",
+    "angular-mocks": "~1.4.7"
+  }
+}
