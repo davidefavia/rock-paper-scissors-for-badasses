@@ -1,4 +1,7 @@
 # Rock, paper, scissors for badasses!
+
+![Badasses!](src/img/hero.png "Badasses!")
+
 Choose your badass and play against computer!
 
 ## Requirements
@@ -69,3 +72,8 @@ $ npm run test
 ```
 
 Unit testing environment is **Karma runner**, while the unit testing framework is **Jasmine**. Tests run inside **Chrome browser**.
+
+## Todo
+
+- Better responsive layout.
+- Javascript minification for production.
