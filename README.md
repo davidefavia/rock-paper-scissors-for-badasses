@@ -1,5 +1,3 @@
-# Rock, paper, scissors for badasses!
-
 ![Badasses!](src/img/hero.png "Badasses!")
 
 Choose your badass and play against computer!
