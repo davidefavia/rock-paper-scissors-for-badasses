@@ -8,14 +8,14 @@ Choose your badass and play against computer!
 To develop, serve and build this project you need node.js and `bower` and `gulp` installed globally.
 
 ```bash
-$ npm install -g bower
-$ npm install -g gulp
+npm install -g bower
+npm install -g gulp
 ```
 
 To run tests you need also `karma-cli` installed globally:
 
 ```bash
-$ npm install -g karma-cli
+npm install -g karma-cli
 ```
 
 ## Installation
@@ -23,8 +23,8 @@ $ npm install -g karma-cli
 Install node modules and bower dependencies:
 
 ```bash
-$ npm install
-$ bower install
+npm install
+bower install
 ```
 
 ## Develop while playing
@@ -32,14 +32,10 @@ $ bower install
 Run task:
 
 ```bash
-$ gulp serve
+gulp serve
 ```
 
-This task creates a folder named 'build' inside the project, it is removed and created everytime you run `serve`. If you open your browser at:
-
-[http://localhost:12345](http://localhost:12345)
-
-you can play with the game.
+This task creates a folder named 'build' inside the project, it is removed and created when you run `serve`. If you open your browser at [http://localhost:12345](http://localhost:12345) you can play the game.
 
 If you need to make changes or fix bugs, just modify files inside `src` folder: every change is reflected inside `build` folder and the game is reloaded inside the browser.
 
@@ -56,7 +52,7 @@ Main application file is located at `src/js/app.js`. It describes the **AngularJ
 To build project, run task:
 
 ```bash
-$ gulp build
+gulp build
 ```
 
 This task works like `serve` BUT it does not start the webserver and it does not watch `src` files for changes.
@@ -68,7 +64,7 @@ You can publish `build` folder content wherever you want!
 To run test, run script:
 
 ```bash
-$ npm run test
+npm run test
 ```
 
 Unit testing is done with **Karma runner** environment and **Jasmine** as framework. Tests run inside **Chrome browser**.
