@@ -73,8 +73,10 @@
       }
 
       $scope.setPlayer1Weapon = function(w) {
-        $scope.player1Weapon = w;
-        $scope.setPlayer2Weapon();
+        if(!$scope.player1Weapon) {
+          $scope.player1Weapon = w;
+          $scope.setPlayer2Weapon();
+        }
       }
 
       $scope.setPlayer2Weapon = function() {
