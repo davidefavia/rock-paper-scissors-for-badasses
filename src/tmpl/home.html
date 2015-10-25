@@ -2,9 +2,9 @@
   <h3>Choose your badass:</h3>
   <div class="row">
     <div class="col-md-4" ng-repeat="bad in badassesList">
-      <badass user="bad" ng-click="selectBadass($index);" ng-class="{selected:(userChoice.key===bad.key || computerChoice.key===bad.key),disabled:(userChoice && computerChoice && userChoice.key!==bad.key && computerChoice.key!==bad.key)}"></badass>
-      <h6><span ng-show="userChoice.key===bad.key">You</span><span ng-show="computerChoice.key===bad.key">Computer</span>&nbsp;</h6>
+      <badass player1="bad" ng-click="selectPlayer1($index);" ng-class="{selected:(player1===bad.key || player2===bad.key),disabled:(player1 && player2 && player1!==bad.key && player2!==bad.key)}"></badass>
+      <h6><span ng-show="player1===bad.key">You</span><span ng-show="player2===bad.key">Computer</span>&nbsp;</h6>
     </div>
   </div>
-  <a class="btn btn-danger btn-lg animated" ng-show="!(!userChoice || !computerChoice)" ng-class="{fadeIn:!(!userChoice || !computerChoice)}" ng-disabled="(!userChoice || !computerChoice)" href="#/play">Play!</a>
+  <a class="btn btn-danger btn-lg animated" ng-show="!(!player1 || !player2)" ng-class="{fadeIn:!(!player1 || !player2)}" ng-disabled="(!player1 || !player2)" ng-href="#/{{player1}}/vs/{{player2}}">Play!</a>
 </div>

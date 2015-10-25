@@ -4,19 +4,6 @@
 (function() {
   angular.module('app', ['ngRoute'])
     /**
-     * Constants and values
-     */
-    .constant('Badasses', [{
-      key: 'steven',
-      label: 'Steven'
-    }, {
-      key: 'jeanclaude',
-      label: 'Jean Claude'
-    }, {
-      key: 'chuck',
-      label: 'Chuck'
-    }])
-    /**
      * Routes and configurations
      */
     .config(['$compileProvider', '$routeProvider', function($compileProvider, $routeProvider) {
@@ -25,49 +12,38 @@
         templateUrl: 'tmpl/home.html',
         controller: 'HomeController'
       });
-      $routeProvider.when('/play', {
+      $routeProvider.when('/:player1/vs/:player2', {
         templateUrl: 'tmpl/play.html',
-        controller: 'PlayController',
-        resolve: {
-          registered: function($q, Player) {
-            var q = $q.defer();
-            if (Player.areRegistered()) {
-              q.resolve();
-            } else {
-              q.reject();
-            }
-            return q.promise;
-          }
-        }
+        controller: 'PlayController'
       });
       $routeProvider.otherwise('/home');
     }])
-    .controller('HomeController', ['$scope', '$filter', '$interval', '$location', 'Badasses', 'Player', function($scope, $filter, $interval, $location, Badasses, Player) {
-      $scope.badassesList = Badasses;
-      Player.setUserBadass(null);
-      Player.setComputerBadass(null);
+    .controller('HomeController', ['$scope', '$filter', '$interval', '$location', 'Game', function($scope, $filter, $interval, $location, Game) {
+      $scope.badassesList = Game.getBadasses();
 
-      $scope.selectBadass = function(index) {
-        if (!$scope.userChoice) {
-          Player.setUserBadass($scope.badassesList[index]);
-          $scope.userChoice = Player.getUserBadass();
-          $scope.selectComputerBadass(index);
+      $scope.selectPlayer1 = function(index) {
+        if (!$scope.player1) {
+          $scope.player1 = $scope.badassesList[index].key;
+          $scope.selectPlayer2();
         }
       }
 
-      $scope.selectComputerBadass = function(excludedIndex) {
+      $scope.selectPlayer2 = function() {
         var chosen = Math.floor(Math.random() * ($scope.badassesList.length - 1));
         var choice = $filter('filter')($scope.badassesList, {
-          key: '!' + $scope.userChoice.key
+          key: '!' + $scope.player1
         })[chosen];
-        Player.setComputerBadass(choice);
-        $scope.computerChoice = Player.getComputerBadass();
+        $scope.player2 = choice.key;
       }
 
     }])
-    .controller('PlayController', ['$scope', '$interval', 'Game', 'Player', function($scope, $interval, Game, Player) {
-      $scope.userChoice = Player.getUserBadass();
-      $scope.computerChoice = Player.getComputerBadass();
+    .controller('PlayController', ['$scope', '$interval', '$routeParams', 'Game', function($scope, $interval, $routeParams, Game) {
+      $scope.player1Choice = Game.getBadassByKey($routeParams.player1);
+      $scope.player2Choice = Game.getBadassByKey($routeParams.player2);
+
+      if(!$scope.player1Choice || !$scope.player2Choice) {
+        $location.path('/home');
+      }
 
       $scope.startCountdown = function() {
         $scope.countdown = [3,2,1,'Fight!'];
@@ -90,28 +66,28 @@
 
       $scope.reset = function() {
         $scope.playAgain = false;
-        $scope.userStatus = '';
-        $scope.computerStatus = '';
-        $scope.userWeapon = '';
-        $scope.computerWeapon = '';
+        $scope.player1Status = '';
+        $scope.player2Status = '';
+        $scope.player1Weapon = '';
+        $scope.player2Weapon = '';
       }
 
-      $scope.setUserWeapon = function(w) {
-        $scope.userWeapon = w;
-        $scope.setComputerWeapon();
+      $scope.setPlayer1Weapon = function(w) {
+        $scope.player1Weapon = w;
+        $scope.setPlayer2Weapon();
       }
 
-      $scope.setComputerWeapon = function() {
+      $scope.setPlayer2Weapon = function() {
         var index = Math.floor(Math.random() * $scope.weapons.length);
-        $scope.computerWeapon = $scope.weapons[index];
+        $scope.player2Weapon = $scope.weapons[index];
         $scope.calculate();
       }
 
       $scope.calculate = function() {
         $scope.playAgain = true;
-        var result = Game.getResults($scope.userWeapon, $scope.computerWeapon);
-        $scope.userStatus = result.player1;
-        $scope.computerStatus = result.player2;
+        var result = Game.getResults($scope.player1Weapon, $scope.player2Weapon);
+        $scope.player1Status = result.player1;
+        $scope.player2Status = result.player2;
       }
 
       $scope.reset();
@@ -122,8 +98,19 @@
     /**
      * Services!
      */
-    .service('Game', [function() {
+    .service('Game', ['$filter', function($filter) {
       var weaponsList = ['rock', 'paper', 'scissors'];
+
+      var badassesList = [{
+        key: 'steven',
+        label: 'Steven'
+      }, {
+        key: 'jeanclaude',
+        label: 'Jean Claude'
+      }, {
+        key: 'chuck',
+        label: 'Chuck'
+      }];
 
       var tie = {
         player1: 'tie',
@@ -150,34 +137,14 @@
           var first = weaponsList.indexOf(firstWeapon);
           var second = weaponsList.indexOf(secondWeapon);
           return winnings[first][second];
+        },
+        getBadasses: function() {
+          return badassesList;
+        },
+        getBadassByKey: function(key) {
+          return $filter('filter')(badassesList, {key:key})[0];
         }
       }
-    }])
-    .service('Player', ['$localStorage', function($localStorage) {
-      return {
-        getUserBadass: function(a) {
-          return JSON.parse($localStorage.getItem('user')).data;
-        },
-        getComputerBadass: function(a) {
-          return JSON.parse($localStorage.getItem('computer')).data;
-        },
-        setUserBadass: function(a) {
-          $localStorage.setItem('user', JSON.stringify({
-            data: a
-          }));
-        },
-        setComputerBadass: function(a) {
-          $localStorage.setItem('computer', JSON.stringify({
-            data: a
-          }));
-        },
-        areRegistered: function() {
-          return !!this.getUserBadass() && !!this.getComputerBadass();
-        }
-      }
-    }])
-    .service('$localStorage', ['$window', function($window) {
-      return $window.localStorage;
     }])
     /**
      * Directives
@@ -185,10 +152,10 @@
     .directive('badass', [function() {
       return {
         restrict: 'E',
-        template: '<a href="" class="badass btn"><img ng-src="img/{{user.key}}{{s}}.jpg" class="img-circle img-thumbnail" /></a>',
+        template: '<a href="" class="badass btn"><img ng-src="img/{{player1.key}}{{s}}.jpg" class="img-circle img-thumbnail" /></a>',
         replace: true,
         scope: {
-          user: '=',
+          player1: '=',
           ngClick: '&',
           status: '='
         },
@@ -200,7 +167,7 @@
               $scope.s = s;
               $scope.$apply();
             }
-            img.src = 'img/' + $scope.user.key + s + '.jpg';
+            img.src = 'img/' + $scope.player1.key + s + '.jpg';
           }, true);
         }
       }
