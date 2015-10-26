@@ -6,14 +6,14 @@ Choose your badass and play against computer!
 To develop, serve and build this project you need node.js and `bower` and `gulp` installed globally.
 
 ```bash
-npm install -g bower
-npm install -g gulp
+$ npm install -g bower
+$ npm install -g gulp
 ```
 
 To run tests you need also `karma-cli` installed globally:
 
 ```bash
-npm install -g karma-cli
+$ npm install -g karma-cli
 ```
 
 ## Installation
@@ -21,8 +21,8 @@ npm install -g karma-cli
 Install node modules and bower dependencies:
 
 ```bash
-npm install
-bower install
+$ npm install
+$ bower install
 ```
 
 ## Develop while playing
@@ -30,7 +30,7 @@ bower install
 Run task:
 
 ```bash
-gulp serve
+$ gulp serve
 ```
 
 This task creates a folder named 'build' inside the project, it is removed and created when you run `serve`. If you open your browser at [http://localhost:12345](http://localhost:12345) you can play the game.
@@ -47,10 +47,10 @@ Main application file is located at `src/js/app.js`. It describes the **AngularJ
 
 ## Build
 
-To build project, run task:
+To build project:
 
 ```bash
-gulp build
+$ gulp build
 ```
 
 This task works like `serve` BUT it does not start the webserver and it does not watch `src` files for changes.
@@ -59,10 +59,10 @@ You can publish `build` folder content wherever you want!
 
 ## Test
 
-To run test, run script:
+To run tests:
 
 ```bash
-npm run test
+$ npm run test
 ```
 
 Unit testing is done with **Karma runner** environment and **Jasmine** as framework. Tests run inside **Chrome browser**.
@@ -73,3 +73,16 @@ Unit testing is done with **Karma runner** environment and **Jasmine** as framew
 - Use only needed Bootstrap modules (buttons, grid system).
 - Javascript concatenation and minification for production.
 - Remove useless files for production environment (_e.g._ LESS files).
+- Implement "[Rock, paper, scissors, Spock, lizard](https://en.wikipedia.org/wiki/Rock-paper-scissors#Additional_weapons)" version.
+
+## License
+
+The MIT License (MIT)
+
+Copyright &copy; 2015 Davide Favia
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
