@@ -71,8 +71,6 @@ Unit testing is done with **Karma runner** environment and **Jasmine** as framew
 
 - Better responsive layout.
 - Use only needed Bootstrap modules (buttons, grid system).
-- Javascript concatenation and minification for production.
-- Remove useless files for production environment (_e.g._ LESS files).
 - Implement "[Rock, paper, scissors, Spock, lizard](https://en.wikipedia.org/wiki/Rock-paper-scissors#Additional_weapons)" version.
 
 ## License
