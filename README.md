@@ -3,7 +3,7 @@
 Choose your badass and play against computer!
 
 ## Requirements
-To develop, serve and build this project you need node.js and `bower` and `gulp` installed globally.
+To develop, serve and build this project you need `node.js` and `bower` and `gulp` installed globally.
 
 ```shell
 $ npm install -g bower
@@ -18,7 +18,7 @@ $ npm install -g karma-cli
 
 ## Installation
 
-Install node modules and bower dependencies:
+Install `node.js` modules and `bower` dependencies:
 
 ```shell
 $ npm install
@@ -33,7 +33,7 @@ Run task:
 $ gulp serve
 ```
 
-This task creates a folder named 'build' inside the project, it is removed and created when you run `serve`. If you open your browser at [http://localhost:12345](http://localhost:12345) you can play the game.
+This task creates a folder named `build` inside the project, it is removed and created when you run `serve`. If you open your browser at [http://localhost:12345](http://localhost:12345) you can play the game.
 
 If you need to make changes or fix bugs, just modify files inside `src` folder: every change is reflected inside `build` folder and the game is reloaded inside the browser.
 
