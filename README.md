@@ -5,14 +5,14 @@ Choose your badass and play against computer!
 ## Requirements
 To develop, serve and build this project you need node.js and `bower` and `gulp` installed globally.
 
-```bash
+```shell
 $ npm install -g bower
 $ npm install -g gulp
 ```
 
-To run tests you need also `karma-cli` installed globally:
+To run tests you also need `karma-cli` installed globally:
 
-```bash
+```shell
 $ npm install -g karma-cli
 ```
 
@@ -20,7 +20,7 @@ $ npm install -g karma-cli
 
 Install node modules and bower dependencies:
 
-```bash
+```shell
 $ npm install
 $ bower install
 ```
@@ -29,7 +29,7 @@ $ bower install
 
 Run task:
 
-```bash
+```shell
 $ gulp serve
 ```
 
@@ -49,7 +49,7 @@ Main application file is located at `src/js/app.js`. It describes the **AngularJ
 
 To build project:
 
-```bash
+```shell
 $ gulp build
 ```
 
@@ -61,7 +61,7 @@ You can publish `build` folder content wherever you want!
 
 To run tests:
 
-```bash
+```shell
 $ npm run test
 ```
 
