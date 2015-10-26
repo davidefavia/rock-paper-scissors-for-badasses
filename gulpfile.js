@@ -5,11 +5,12 @@ var fs = require('fs');
 var gulp = require('gulp');
 var gutils = require('gutils');
 var inject = require('gulp-inject');
+var karmaServer = require('karma').Server;
 var less = require('gulp-less');
 var merge = require('merge-stream');
 var minifycss = require('gulp-minify-css');
 var runsequence = require('run-sequence');
-var karmaServer = require('karma').Server;
+var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
 var src = {
@@ -87,6 +88,16 @@ gulp.task('build', function(cb) {
 // compile css and javascript for distribution, remove useless files and folders
 gulp.task('pre', function(cb) {
   return runsequence('compile', 'useless', cb);
+});
+
+// uglify app.js
+// @TODO investigate why minification lead to error when using $routeProvider
+gulp.task('uglify', function() {
+  return gulp.src(dest.js + 'app.js')
+  .pipe(uglify({
+    mangle : true
+  }))
+  .pipe(gulp.dest(dest.js));
 });
 
 // compile css and javascript

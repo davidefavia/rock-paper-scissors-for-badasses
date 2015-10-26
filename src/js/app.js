@@ -2,6 +2,7 @@
  * Rock, paper, scissors hand game!
  */
 (function() {
+  'use strict';
   angular.module('app', ['ngRoute'])
     /**
      * Routes and configurations
@@ -18,7 +19,7 @@
       });
       $routeProvider.otherwise('/home');
     }])
-    .controller('HomeController', ['$scope', '$filter', '$interval', '$location', 'Game', function($scope, $filter, $interval, $location, Game) {
+    .controller('HomeController', ['$scope', '$filter', '$interval', '$window', 'Game', function($scope, $filter, $interval, $window, Game) {
       $scope.badassesList = Game.getBadasses();
 
       $scope.selectPlayer1 = function(index) {
@@ -29,7 +30,7 @@
       }
 
       $scope.selectPlayer2 = function() {
-        var chosen = Math.floor(Math.random() * ($scope.badassesList.length - 1));
+        var chosen = $window.Math.floor($window.Math.random() * ($scope.badassesList.length - 1));
         var choice = $filter('filter')($scope.badassesList, {
           key: '!' + $scope.player1
         })[chosen];
@@ -37,7 +38,7 @@
       }
 
     }])
-    .controller('PlayController', ['$scope', '$interval', '$routeParams', 'Game', function($scope, $interval, $routeParams, Game) {
+    .controller('PlayController', ['$scope', '$interval', '$location', '$window', '$routeParams', 'Game', function($scope, $interval, $location, $window, $routeParams, Game) {
       $scope.player1Choice = Game.getBadassByKey($routeParams.player1);
       $scope.player2Choice = Game.getBadassByKey($routeParams.player2);
 
@@ -80,7 +81,7 @@
       }
 
       $scope.setPlayer2Weapon = function() {
-        var index = Math.floor(Math.random() * $scope.weapons.length);
+        var index = $window.Math.floor($window.Math.random() * $scope.weapons.length);
         $scope.player2Weapon = $scope.weapons[index];
         $scope.calculate();
       }
