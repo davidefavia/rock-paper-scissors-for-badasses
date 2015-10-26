@@ -47,10 +47,10 @@ Main application file is located at `src/js/app.js`. It describes the **AngularJ
 
 ## Build
 
-To build project:
+To build and distribute project:
 
 ```shell
-$ gulp build
+$ gulp dist
 ```
 
 This task works like `serve` BUT it does not start the webserver and it does not watch `src` files for changes.
@@ -62,7 +62,7 @@ You can publish `build` folder content wherever you want!
 To run tests:
 
 ```shell
-$ npm run test
+$ npm test
 ```
 
 Unit testing is done with **Karma runner** environment and **Jasmine** as framework. Tests run inside **Chrome browser**.
