@@ -1,5 +1,5 @@
 {
-  "name": "rock-paper-scissors",
+  "name": "rock-paper-scissors-for-badasses",
   "version": "0.1.0",
   "description": "Rock, paper, scissors hand game!",
   "main": "index.html",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/davidefavia/rock-paper-scissors.git"
+    "url": "git+ssh://git@github.com/davidefavia/rock-paper-scissors-for-badasses.git"
   },
   "author": "Davide Favia <davide.favia@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/davidefavia/rock-paper-scissors/issues"
+    "url": "https://github.com/davidefavia/rock-paper-scissors-for-badasses/issues"
   },
-  "homepage": "https://github.com/davidefavia/rock-paper-scissors#readme",
+  "homepage": "https://github.com/davidefavia/rock-paper-scissors-for-badasses#readme",
   "dependencies": {
     "bower": "^1.6.3",
     "del": "^2.0.2",
